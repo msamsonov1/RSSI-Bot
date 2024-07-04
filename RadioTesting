@@ -1,0 +1,57 @@
+import time
+import random  # Simulate sensor readings
+
+# Hypothetical functions to interact with Spot and PCTEL (replace with actual implementations)
+def get_spot_movement_data():
+    """Simulates Spot's movement data (position, orientation, etc.)"""
+    # Replace with code that retrieves data from Spot's sensors or API
+    return {"x": 0.0, "y": 0.0, "theta": 0.0}  # Example values
+
+def get_pctel_rssi():
+    """Simulates PCTEL RSSI reading"""
+    # Replace with code that interacts with the PCTEL device
+    return random.randint(-100, -30)  # Example range for RSSI
+
+def send_spot_command(command):
+    """Simulates sending commands to Spot (replace with actual communication method)"""
+    # Replace with code that sends commands to Spot's control system
+    print(f"Sending command to Spot: {command}")
+
+def send_data_to_server(data):
+    """Simulates sending data to a server (replace with actual data transmission)"""
+    # Replace with code that transmits data to a server for logging or analysis
+    print(f"Sending data to server: {data}")
+
+
+def main():
+    # Set parameters (adjust as needed)
+    follow_distance = 2.0  # Meters
+    data_logging_interval = 1.0  # Seconds
+    server_address = "your_server.com:port"  # Replace with actual server details
+
+    while True:
+        # Get Spot's movement data
+        spot_data = get_spot_movement_data()
+
+        # Simulate following behavior
+        # (Replace with actual path planning or control algorithms)
+        command = f"move_forward {follow_distance}"
+        send_spot_command(command)
+
+        # Get PCTEL RSSI reading
+        rssi = get_pctel_rssi()
+
+        # Combine data and send to server
+        data = {"time": time.time(), "spot_data": spot_data, "rssi": rssi}
+        send_data_to_server(data)
+
+        # Log data locally (optional)
+        print(f"Spot position: ({spot_data['x']}, {spot_data['y']})")
+        print(f"RSSI: {rssi} dBm")
+
+        # Simulate data collection interval
+        time.sleep(data_logging_interval)
+
+
+if __name__ == "__main__":
+    main()
